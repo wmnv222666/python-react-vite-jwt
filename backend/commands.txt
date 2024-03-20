@@ -1,0 +1,17 @@
+python -m virtualenv venv 
+ venv/scripts/activate
+ pip install django
+ pip install djangorestframework
+ py manage.py runserver
+ 
+python manage.py makemigrations
+python manage.py migrate
+
+py manage.py createsuperuser
+
+
+pip install coverage
+coverage run --omit='*/venv/*' manage.py test
+coverage html
+
+
