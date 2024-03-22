@@ -33,6 +33,8 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=options, default="published")
     objects = models.Manager()  # default manager
     postobjects = PostObjects()  # custom manager
+    image = models.ImageField(upload_to='post_images/', null=True, blank=True)
+
 
     class Meta:
         ordering = ("-published",)
