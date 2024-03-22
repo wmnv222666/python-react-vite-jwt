@@ -18,12 +18,14 @@ const Posts = (props) => {
                     {posts.map((post) => (
                         <Grid item key={post.id} xs={12} md={4}>
                             <Card>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image="https://source.unsplash.com/random"
-                                    alt="random"
-                                />
+                                {post.image && (
+                                    <CardMedia
+                                        component="img"
+                                        height="140"
+                                        image={post.image} // 使用后端提供的图片链接
+                                        alt={post.title}
+                                    />
+                                )}
                                 <CardContent>
                                     <Typography variant="h6" gutterBottom>
                                         {post.title.substr(0, 50)}...

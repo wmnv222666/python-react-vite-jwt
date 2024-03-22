@@ -17,7 +17,7 @@ function App() {
     fetch(apiUrl)
       .then((data) => data.json())
       .then((posts) => {
-        // console.log(posts,"post");
+        console.log(posts,"post");
         setAppState({ loading: false, posts: posts });
       });
   }, []);

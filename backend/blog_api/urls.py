@@ -8,3 +8,4 @@ urlpatterns = [
     # path("api/posts/<int:pk>/", PostDetail.as_view(), name="post-detail"),
     path("", PostList.as_view(), name="listcreate"),
 ]
+
