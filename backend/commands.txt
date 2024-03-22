@@ -1,8 +1,10 @@
 python -m virtualenv venv 
- venv/scripts/activate
+.\venv\Scripts\Activate
  pip install django
  pip install djangorestframework
  py manage.py runserver
+ #if pip --version  is error    1.Remove-Item -Path .\venv -Recurse -Force 2.python -m venv venv 3..\venv\Scripts\Activate  4.pip --version
+
  
 python manage.py makemigrations
 python manage.py migrate
@@ -13,5 +15,7 @@ py manage.py createsuperuser
 pip install coverage
 coverage run --omit='*/venv/*' manage.py test
 coverage html
+
+pip install django-cors-headers # Handle cross-domain requests
 
 
