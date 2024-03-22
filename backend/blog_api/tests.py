@@ -25,11 +25,17 @@ class PostTests(APITestCase):
             username="test_user1", password="123456789"
         )
 
-        data = {"title": "new", "author": 1, "excerpt": "new", "content": "new"}
+        data = {
+            "title": "new",
+            "author": 1,
+            "excerpt": "new",
+            "content": "new",
+            "image": "test_image.jpg",
+        }
         url = reverse("blog_api:listcreate")
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(len(response.data), 6)
+        self.assertEqual(len(response.data), 7)
         root = reverse(("blog_api:detailcreate"), kwargs={"pk": 1})
         response = self.client.get(url, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from blog.models import Post, Category
 
 
-class Test_Create_Post(TestCase):
+class TestCreatePost(TestCase):
 
     @classmethod
     def setUpTestData(cls):
@@ -22,6 +22,7 @@ class Test_Create_Post(TestCase):
             slug="post-title",
             author_id=1,
             status="published",
+            image="post_image.jpg",  # 添加图片字段
         )
         test_post.save()
 
@@ -33,9 +34,11 @@ class Test_Create_Post(TestCase):
         title = f"{post.title}"
         content = f"{post.content}"
         status = f"{post.status}"
+        image = f"{post.image}"
         self.assertEqual(author, "test_user1")
         self.assertEqual(title, "Post Title")
         self.assertEqual(content, "Post Content")
         self.assertEqual(status, "published")
+        self.assertEqual(image, "post_image.jpg")
         self.assertEqual(str(post), "Post Title")
         self.assertEqual(str(cat), "django")
