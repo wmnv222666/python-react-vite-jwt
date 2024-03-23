@@ -31,6 +31,7 @@ class PostTests(APITestCase):
             "excerpt": "new",
             "content": "new",
             "image": "test_image.jpg",
+            "slug": "new-post-slug",
         }
         url = reverse("blog_api:listcreate")
         response = self.client.post(url, data, format="json")

@@ -10,7 +10,8 @@ class PostAdmin(admin.ModelAdmin):
         "status",
         "display_image",
         "author",
-    )  # 调整列表显示的字段顺序
+        "slug",
+    )
     prepopulated_fields = {
         "slug": ("title",),
     }
@@ -20,16 +21,7 @@ class PostAdmin(admin.ModelAdmin):
 
     display_image.short_description = "Image"
 
-    fields = (
-        "title",
-        "excerpt",
-        "content",
-        "category",
-        "author",
-        "status",
-        "image",  # 添加image字段
-    )
-    readonly_fields = ("id",)  # 将id字段设为只读
+    readonly_fields = ("id",)
 
 
 admin.site.register(models.Category)
