@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "blog_api",
     "rest_framework",
     "corsheaders",
+    "users",
+    "rest_framework_simplejwt.token_blacklist",
 ]
 
 MIDDLEWARE = [
@@ -134,7 +136,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
         # "rest_framework.permissions.IsAuthenticated",#set up permission for uers
-    ]
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
