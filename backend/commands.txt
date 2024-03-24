@@ -20,3 +20,8 @@ pip install django-cors-headers # Handle cross-domain requests
 
 python -m pip install Pillow  #for images
 
+
+
+
+vite+react
+
