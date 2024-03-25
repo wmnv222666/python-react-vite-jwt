@@ -1,11 +1,14 @@
 from django.urls import path
 from .views import PostList, PostDetail
 
-app_name = "blog_api"
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+app_name = 'blog_api'
 
 urlpatterns = [
-    path("<int:pk>/", PostDetail.as_view(), name="detailcreate"),
-    # path("api/posts/<int:pk>/", PostDetail.as_view(), name="post-detail"),
-    path("", PostList.as_view(), name="listcreate"),
+    path('<int:pk>/', PostDetail.as_view(), name='detailcreate'),
+    path('', PostList.as_view(), name='listcreate'),
 ]
-

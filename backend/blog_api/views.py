@@ -5,14 +5,14 @@ from rest_framework.permissions import (
     SAFE_METHODS,
     IsAuthenticated,
     IsAuthenticatedOrReadOnly,
-    BasePermission,
+    AllowAny,BasePermission,
     IsAdminUser,
     DjangoModelPermissions,
-    AllowAny,
 )
 
+
 class PostUserWritePermission(BasePermission):
-    message = "Editing posts is restricted to the author only."
+    message = 'Editing posts is restricted to the author only.'
 
     def has_object_permission(self, request, view, obj):
 
@@ -23,25 +23,35 @@ class PostUserWritePermission(BasePermission):
 
 
 class PostList(generics.ListCreateAPIView):
-    # permission_classes = [IsAuthenticated]
-    permission_classes = [AllowAny]
-    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticated]
+    # permission_classes = [AllowAny]
+    queryset = Post.postobjects.all()
     serializer_class = PostSerializer
 
-    # class ModifyView(APIView):
-    # permission_classes = [IsAuthenticated]  # 仅允许已认证的用户访问
 
-    # def post(self, request):
-    #     # 创建新资源的逻辑
-
-    # def put(self, request, pk):
-    #     # 更新现有资源的逻辑
-
-    # def delete(self, request, pk):
-    #     # 删除现有资源的逻辑
-
-
-class PostDetail(generics.RetrieveDestroyAPIView):
+class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
     permission_classes = [PostUserWritePermission]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+""" Concrete View Classes
+# CreateAPIView
+Used for create-only endpoints.
+# ListAPIView
+Used for read-only endpoints to represent a collection of model instances.
+# RetrieveAPIView
+Used for read-only endpoints to represent a single model instance.
+# DestroyAPIView
+Used for delete-only endpoints for a single model instance.
+# UpdateAPIView
+Used for update-only endpoints for a single model instance.
+# ListCreateAPIView
+Used for read-write endpoints to represent a collection of model instances.
+RetrieveUpdateAPIView
+Used for read or update endpoints to represent a single model instance.
+# RetrieveDestroyAPIView
+Used for read or delete endpoints to represent a single model instance.
+# RetrieveUpdateDestroyAPIView
+Used for read-write-delete endpoints to represent a single model instance.
+"""

@@ -8,9 +8,9 @@ class PostAdmin(admin.ModelAdmin):
         "title",
         "id",
         "status",
-        "display_image",
-        "author",
         "slug",
+        "author",
+        "display_image",
     )
     prepopulated_fields = {
         "slug": ("title",),
@@ -21,7 +21,7 @@ class PostAdmin(admin.ModelAdmin):
 
     display_image.short_description = "Image"
 
-    readonly_fields = ("id",)
 
-
-admin.site.register(models.Category)
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name",)
