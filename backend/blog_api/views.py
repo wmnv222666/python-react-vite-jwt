@@ -29,8 +29,11 @@ class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     # filter  and See your own posts
     def get_queryset(self):
-        user = self.request.user
-        return Post.postobjects.filter(author=user)
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            return Post.postobjects.filter(author=user)
+        else:
+            return Post.postobjects.all()
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
