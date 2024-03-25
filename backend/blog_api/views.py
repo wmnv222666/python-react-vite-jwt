@@ -23,10 +23,14 @@ class PostUserWritePermission(BasePermission):
 
 
 class PostList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Post.postobjects.all()
     serializer_class = PostSerializer
+    # filter  and See your own posts
+    def get_queryset(self):
+        user = self.request.user
+        return Post.postobjects.filter(author=user)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
