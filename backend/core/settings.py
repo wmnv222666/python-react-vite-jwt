@@ -162,6 +162,7 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    # "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.TokenUser",),
     "TOKEN_TYPE_CLAIM": "token_type",
 }

@@ -15,7 +15,7 @@ class UserAdminConfig(UserAdmin):
     )
     list_filter = ("email", "user_name", "first_name", "is_active", "is_staff")
     ordering = ("-start_date",)
-    list_display = ("email", "user_name", "first_name", "is_active", "is_staff")
+    list_display = ("email", "id", "user_name", "first_name", "is_active", "is_staff")
     fieldsets = (
         (
             None,
