@@ -10,10 +10,12 @@ from rest_framework.permissions import AllowAny
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request, format="json"):
+    def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            user.is_active = True
+            user.save()
             if user:
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)

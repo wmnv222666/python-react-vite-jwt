@@ -1,22 +1,14 @@
-python -m virtualenv venv 
-.\venv\Scripts\Activate
- pip install django
- pip install djangorestframework
- py manage.py runserver
- #if pip --version  is error    1.Remove-Item -Path .\venv -Recurse -Force 2.python -m venv venv 3..\venv\Scripts\Activate  4.pip --version
-
- 
-python manage.py makemigrations
-python manage.py migrate
-
-py manage.py createsuperuser
-
-
+Part 1
+=============
+py manage.py makemigrations --dry-run --verbosity 3
+py manage.py runserver
+py manage.py createsuperuser 
 pip install coverage
 coverage run --omit='*/venv/*' manage.py test
 coverage html
+pip install djangorestframework
+=============
+Part 3
+pip install djangorestframework-simplejwt
 
-pip install django-cors-headers # Handle cross-domain requests
-
-python -m pip install Pillow  #for images
-
+$ curl -X POST -d "email=a@a.com&password=aa610153" http://localhost:8000/api/token/
