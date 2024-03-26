@@ -9,6 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            "category",
             "author",
             "excerpt",
             "content",
