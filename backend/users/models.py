@@ -32,6 +32,14 @@ class CustomAccountManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+#superaccount to manage user account
+    def delete_user(self, user_id):
+        try:
+            user = self.get(pk=user_id)
+            user.delete()
+            return True
+        except NewUser.DoesNotExist:
+            return False
 
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
