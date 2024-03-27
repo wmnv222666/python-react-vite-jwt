@@ -4,6 +4,8 @@ from django.conf import settings
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    category = serializers.StringRelatedField()
     class Meta:
         model = Post
         fields = (
